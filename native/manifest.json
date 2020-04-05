@@ -3,7 +3,7 @@
   "type": "WebApp",
   "meta": {
     "name": "Sample App VUE JS",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "minimum-overwolf-version": "0.120.0",
     "author": "Overwolf",
     "icon": "IconMouseOver.png",
@@ -12,48 +12,20 @@
     "window_icon": "TaskbarIcon.png",
     "description": "Sample app for new developers"
   },
-  "permissions": [
-    "Hotkeys",
-    "Extensions",
-    "Streaming",
-    "Profile",
-    "GameInfo",
-    "DesktopStreaming"
-  ],
+  "permissions": ["Hotkeys", "GameInfo"],
   "data": {
-    "game_targeting": {
-      "type": "dedicated",
-      "game_ids": [5426]
-    },
-    "launch_events": [
-      {
-        "event": "GameLaunch",
-        "event_data": {
-          "game_ids": [5426]
-        },
-        "start_minimized": true
-      }
-    ],
-    "hotkeys": {
-      "sample_app_showhide": {
-        "title": "Show/Hide In-Game Window",
-        "action-type": "toggle",
-        "default": "Ctrl+F"
-      }
-    },
-    "game_events": [5426],
     "start_window": "background",
     "windows": {
       "background": {
         "file": "windows/background/index.html",
-        "background_optimization": false,
         "is_background_page": true
       },
       "desktop": {
         "file": "windows/desktop/index.html",
+        "desktop_only": true,
         "native_window": true,
-        "transparent": true,
         "resizable": true,
+        "transparent": true,
         "size": {
           "width": 1212,
           "height": 699
@@ -61,19 +33,15 @@
         "min_size": {
           "width": 1212,
           "height": 699
-        },
-        "max_size": {
-          "width": 1212,
-          "height": 699
-        },
-        "desktop_only": true
+        }
       },
       "in_game": {
         "file": "windows/in-game/index.html",
         "in_game_only": true,
         "focus_game_takeover": "ReleaseOnHidden",
-        "transparent": true,
+        "focus_game_takeover_release_hotkey": "showhide",
         "resizable": true,
+        "transparent": true,
         "size": {
           "width": 1212,
           "height": 699
@@ -81,17 +49,33 @@
         "min_size": {
           "width": 1212,
           "height": 699
-        },
-        "max_size": {
-          "width": 1212,
-          "height": 699
         }
-      },
+      }
     },
-    "protocol_override_domains": { "googlesyndication": "http" },
-    "block_top_window_navigation": true,
-    "popup_blocker": true,
-    "mute": true,
+    "game_targeting": {
+      "type": "dedicated",
+      "game_ids": [21620]
+    },
+    "game_events": [21620],
+    "launch_events": [
+      {
+        "event": "GameLaunch",
+        "event_data": {
+          "game_ids": [21620]
+        },
+        "start_minimized": false
+      }
+    ],
+    "hotkeys": {
+      "showhide": {
+        "title": "Show/Hide In-Game Window",
+        "action-type": "toggle",
+        "default": "Ctrl+F"
+      }
+    },
+    "protocol_override_domains": {
+      "googlesyndication": "http"
+    },
     "externally_connectable": {
       "matches": [
         "http://*.overwolf.com",
